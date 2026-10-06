@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>React Digital Clock</title>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #111827;
+}
+
+.container {
+    width: 450px;
+    margin: 100px auto;
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+}
+
+h1 {
+    color: #1f2937;
+}
+
+.clock {
+    font-size: 45px;
+    font-weight: bold;
+    color: #2563eb;
+    margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function DigitalClock() {
+
+    const [time, setTime] = React.useState(
+        new Date()
+    );
+
+    React.useEffect(() => {
+
+        const timer = setInterval(() => {
+            setTime(new Date());
+        }, 1000);
+
+        return () => clearInterval(timer);
+
+    }, []);
+
+    return (
+        <div className="container">
+
+            <h1>Digital Clock</h1>
+
+            <div className="clock">
+                {time.toLocaleTimeString()}
+            </div>
+
+        </div>
+    );
+}
+
+function App() {
+    return <DigitalClock />;
+}
+
+ReactDOM.createRoot(
+    document.getElementById("root")
+).render(<App />);
+
+</script>
+
+</body>
+</html>

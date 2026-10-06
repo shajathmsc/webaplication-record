@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>React Product Card</title>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f3f4f6;
+}
+
+.container {
+    width: 350px;
+    margin: 60px auto;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px gray;
+}
+
+.card h2 {
+    color: #7c3aed;
+}
+
+.price {
+    font-size: 25px;
+    font-weight: bold;
+    color: #16a34a;
+}
+
+button {
+    padding: 12px 30px;
+    background: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.message {
+    color: green;
+    margin-top: 15px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function ProductDetails({ name, price, description }) {
+
+    return (
+        <div className="card">
+
+            <h2>{name}</h2>
+
+            <div className="price">
+                ₹{price}
+            </div>
+
+            <p>{description}</p>
+
+        </div>
+    );
+}
+
+function BuyButton({ onBuy }) {
+
+    return (
+        <button onClick={onBuy}>
+            Buy Now
+        </button>
+    );
+}
+
+function ProductCard() {
+
+    const [message, setMessage] = React.useState("");
+
+    function handleBuy() {
+        setMessage("Product added successfully!");
+    }
+
+    return (
+        <div className="container">
+
+            <div className="card">
+
+                <ProductDetails
+                    name="Wireless Headphones"
+                    price="1999"
+                    description="High quality wireless headphones with clear sound."
+                />
+
+                <BuyButton onBuy={handleBuy} />
+
+                {message && (
+                    <div className="message">
+                        {message}
+                    </div>
+                )}
+
+            </div>
+
+        </div>
+    );
+}
+
+function App() {
+    return <ProductCard />;
+}
+
+ReactDOM.createRoot(
+    document.getElementById("root")
+).render(<App />);
+
+</script>
+
+</body>
+</html>

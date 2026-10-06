@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>React Login Form</title>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+body {
+    font-family: Arial;
+    background: #eef2ff;
+}
+
+.container {
+    width: 350px;
+    margin: 70px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px gray;
+}
+
+h1 {
+    text-align: center;
+    color: #4f46e5;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    margin-top: 5px;
+}
+
+.success {
+    color: green;
+    text-align: center;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function LoginForm() {
+
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [error, setError] = React.useState("");
+    const [success, setSuccess] = React.useState("");
+
+    function handleSubmit(event) {
+
+        event.preventDefault();
+
+        setError("");
+        setSuccess("");
+
+        if (email === "" || password === "") {
+            setError("All fields are required");
+        }
+        else if (!email.includes("@")) {
+            setError("Enter a valid email");
+        }
+        else if (password.length < 6) {
+            setError("Password must contain 6 characters");
+        }
+        else {
+            setSuccess("Login successful!");
+        }
+    }
+
+    return (
+        <div className="container">
+
+            <h1>Login Form</h1>
+
+            <form onSubmit={handleSubmit}>
+
+                <label>Email</label>
+
+                <input
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter email"
+                />
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter password"
+                />
+
+                <button type="submit">
+                    Login
+                </button>
+
+                {error && <div className="error">{error}</div>}
+
+                {success && <div className="success">{success}</div>}
+
+            </form>
+
+        </div>
+    );
+}
+
+function App() {
+    return <LoginForm />;
+}
+
+ReactDOM.createRoot(
+    document.getElementById("root")
+).render(<App />);
+
+</script>
+
+</body>
+</html>

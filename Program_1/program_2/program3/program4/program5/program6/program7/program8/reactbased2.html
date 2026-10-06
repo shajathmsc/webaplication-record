@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>React Student Registration</title>
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #e0f2fe;
+}
+
+.container {
+    width: 400px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px gray;
+}
+
+h1 {
+    text-align: center;
+    color: #0284c7;
+}
+
+.group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #0284c7;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.message {
+    text-align: center;
+    color: green;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function InputField({ label, type, value, onChange, placeholder }) {
+    return (
+        <div className="group">
+            <label>{label}</label>
+            <input
+                type={type}
+                value={value}
+                onChange={onChange}
+                placeholder={placeholder}
+            />
+        </div>
+    );
+}
+
+function StudentForm() {
+
+    const [name, setName] = React.useState("");
+    const [rollno, setRollno] = React.useState("");
+    const [course, setCourse] = React.useState("BCA");
+    const [message, setMessage] = React.useState("");
+
+    function handleSubmit(event) {
+
+        event.preventDefault();
+
+        if (name === "" || rollno === "") {
+            setMessage("Please fill all fields");
+            return;
+        }
+
+        setMessage("Student registered successfully!");
+    }
+
+    return (
+        <div className="container">
+
+            <h1>Student Registration</h1>
+
+            <form onSubmit={handleSubmit}>
+
+                <InputField
+                    label="Student Name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter student name"
+                />
+
+                <InputField
+                    label="Roll Number"
+                    type="text"
+                    value={rollno}
+                    onChange={(e) => setRollno(e.target.value)}
+                    placeholder="Enter roll number"
+                />
+
+                <div className="group">
+                    <label>Course</label>
+
+                    <select
+                        value={course}
+                        onChange={(e) => setCourse(e.target.value)}
+                    >
+                        <option>BCA</option>
+                        <option>B.Sc Computer Science</option>
+                        <option>B.Com</option>
+                        <option>BBA</option>
+                    </select>
+                </div>
+
+                <button type="submit">
+                    Register
+                </button>
+
+            </form>
+
+            {message && (
+                <div className="message">
+                    {message}
+                </div>
+            )}
+
+        </div>
+    );
+}
+
+function App() {
+    return <StudentForm />;
+}
+
+ReactDOM.createRoot(
+    document.getElementById("root")
+).render(<App />);
+
+</script>
+
+</body>
+</html>

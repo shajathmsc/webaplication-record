@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Application</title>
+</head>
+<body>
+
+<h2>Job Application Form</h2>
+
+<form onsubmit="return validateJobForm()">
+
+    Name:
+    <input type="text" id="name"><br><br>
+
+    Email:
+    <input type="text" id="email"><br><br>
+
+    Mobile Number:
+    <input type="text" id="mobile"><br><br>
+
+    Qualification:
+    <select id="qualification">
+        <option value="">Select Qualification</option>
+        <option value="BSc">B.Sc</option>
+        <option value="BCA">BCA</option>
+        <option value="MSc">M.Sc</option>
+        <option value="MCA">MCA</option>
+    </select>
+    <br><br>
+
+    Experience:
+    <input type="number" id="experience" min="0">
+    years
+    <br><br>
+
+    Resume:
+    <input type="file" id="resume">
+    <br><br>
+
+    <input type="submit" value="Apply">
+
+</form>
+
+<script>
+function validateJobForm() {
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let mobile = document.getElementById("mobile").value;
+    let qualification = document.getElementById("qualification").value;
+    let experience = document.getElementById("experience").value;
+    let resume = document.getElementById("resume").value;
+
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let mobilePattern = /^[0-9]{10}$/;
+
+    if (name === "") {
+        alert("Please enter your name");
+        return false;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Enter a valid email address");
+        return false;
+    }
+
+    if (!mobilePattern.test(mobile)) {
+        alert("Mobile number must contain 10 digits");
+        return false;
+    }
+
+    if (qualification === "") {
+        alert("Please select your qualification");
+        return false;
+    }
+
+    if (experience === "") {
+        alert("Please enter your experience");
+        return false;
+    }
+
+    if (resume === "") {
+        alert("Please upload your resume");
+        return false;
+    }
+
+    alert("Job Application Submitted Successfully!");
+    return true;
+}
+</script>
+
+</body>
+</html>

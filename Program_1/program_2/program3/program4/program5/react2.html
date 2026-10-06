@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Profile</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef2ff;
+        }
+
+        .app {
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #4338ca;
+        }
+
+        .card {
+            background: white;
+            width: 350px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        p {
+            text-align: left;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function StudentProfile() {
+
+    return (
+        <div className="card">
+            <h2>Student Profile</h2>
+
+            <p><b>Name:</b> Anitha</p>
+            <p><b>Register Number:</b> 101</p>
+            <p><b>Department:</b> Computer Science</p>
+            <p><b>Year:</b> I M.Sc</p>
+            <p><b>Email:</b> anitha@gmail.com</p>
+        </div>
+    );
+}
+
+function App() {
+
+    return (
+        <div className="app">
+
+            <h1>Student Information</h1>
+
+            <p>React Functional Component using JSX</p>
+
+            <StudentProfile />
+
+        </div>
+    );
+}
+
+const root = ReactDOM.createRoot(
+    document.getElementById("root")
+);
+
+root.render(<App />);
+
+</script>
+
+</body>
+</html>

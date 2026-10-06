@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Details</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0fdf4;
+        }
+
+        .app {
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #15803d;
+        }
+
+        .card {
+            background: white;
+            width: 350px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        p {
+            text-align: left;
+            padding: 5px;
+        }
+
+        .salary {
+            color: #15803d;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function Employee() {
+
+    return (
+        <div className="card">
+
+            <h2>Employee Details</h2>
+
+            <p><b>Name:</b> Priya</p>
+
+            <p><b>Employee ID:</b> EMP101</p>
+
+            <p><b>Designation:</b> Software Developer</p>
+
+            <p><b>Department:</b> Information Technology</p>
+
+            <p className="salary">
+                Salary: ₹35,000
+            </p>
+
+        </div>
+    );
+}
+
+function App() {
+
+    return (
+        <div className="app">
+
+            <h1>Employee Information</h1>
+
+            <p>Employee Details using React JSX</p>
+
+            <Employee />
+
+        </div>
+    );
+}
+
+const root = ReactDOM.createRoot(
+    document.getElementById("root")
+);
+
+root.render(<App />);
+
+</script>
+
+</body>
+</html>

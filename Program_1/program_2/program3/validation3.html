@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Feedback Form</title>
+</head>
+<body>
+
+<h2>Online Feedback Form</h2>
+
+<form onsubmit="return validateFeedback()">
+
+    Name:
+    <input type="text" id="name"><br><br>
+
+    Email:
+    <input type="text" id="email"><br><br>
+
+    Rating:
+    <select id="rating">
+        <option value="">Select Rating</option>
+        <option value="5">Excellent</option>
+        <option value="4">Very Good</option>
+        <option value="3">Good</option>
+        <option value="2">Fair</option>
+        <option value="1">Poor</option>
+    </select>
+    <br><br>
+
+    Subject:
+    <input type="text" id="subject"><br><br>
+
+    Comments:<br>
+    <textarea id="comments" rows="5" cols="30"></textarea>
+    <br><br>
+
+    <input type="submit" value="Submit Feedback">
+
+</form>
+
+<script>
+function validateFeedback() {
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let rating = document.getElementById("rating").value;
+    let subject = document.getElementById("subject").value;
+    let comments = document.getElementById("comments").value;
+
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (name === "") {
+        alert("Please enter your name");
+        return false;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email");
+        return false;
+    }
+
+    if (rating === "") {
+        alert("Please select a rating");
+        return false;
+    }
+
+    if (subject === "") {
+        alert("Please enter the subject");
+        return false;
+    }
+
+    if (comments.trim() === "") {
+        alert("Please enter your comments");
+        return false;
+    }
+
+    alert("Feedback submitted successfully!");
+    return true;
+}
+</script>
+
+</body>
+</html>

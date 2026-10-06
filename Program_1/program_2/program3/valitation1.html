@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 350px;
+            margin: 100px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Registration Form</h2>
+
+    <form onsubmit="return validateForm()">
+
+        <label>Name:</label>
+        <input type="text" id="name">
+
+        <label>Email:</label>
+        <input type="text" id="email">
+
+        <label>Password:</label>
+        <input type="password" id="password">
+
+        <label>Confirm Password:</label>
+        <input type="password" id="confirmPassword">
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <p id="message"></p>
+</div>
+
+<script>
+function validateForm() {
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value;
+    let confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    let message = document.getElementById("message");
+
+    
+    if (name === "") {
+        message.style.color = "red";
+        message.innerHTML = "Please enter your name.";
+        return false;
+    }
+
+    
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+        message.style.color = "red";
+        message.innerHTML = "Please enter a valid email.";
+        return false;
+    }
+
+    // Password validation
+    if (password.length < 6) {
+        message.style.color = "red";
+        message.innerHTML =
+            "Password must contain at least 6 characters.";
+        return false;
+    }
+
+    
+    if (password !== confirmPassword) {
+        message.style.color = "red";
+        message.innerHTML = "Passwords do not match.";
+        return false;
+    }
+
+    
+    message.style.color = "green";
+    message.innerHTML = "Registration successful!";
+
+    return false;
+}
+</script>
+
+</body>
+</html>

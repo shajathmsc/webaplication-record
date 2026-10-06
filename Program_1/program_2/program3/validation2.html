@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+</head>
+<body>
+
+<h2>Student Registration Form</h2>
+
+<form onsubmit="return validateForm()">
+
+    Name:
+    <input type="text" id="name"><br><br>
+
+    Email:
+    <input type="text" id="email"><br><br>
+
+    Phone:
+    <input type="text" id="phone"><br><br>
+
+    Date of Birth:
+    <input type="date" id="dob"><br><br>
+
+    Gender:
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female
+    <br><br>
+
+    Password:
+    <input type="password" id="password"><br><br>
+
+    <input type="submit" value="Register">
+</form>
+
+<p id="message"></p>
+
+<script>
+function validateForm() {
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
+    let dob = document.getElementById("dob").value;
+    let password = document.getElementById("password").value;
+    let gender = document.querySelector('input[name="gender"]:checked');
+
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let phonePattern = /^[0-9]{10}$/;
+
+    if (name === "") {
+        alert("Please enter your name");
+        return false;
+    }
+
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email");
+        return false;
+    }
+
+    if (!phonePattern.test(phone)) {
+        alert("Phone number must contain 10 digits");
+        return false;
+    }
+
+    if (dob === "") {
+        alert("Please select your date of birth");
+        return false;
+    }
+
+    if (!gender) {
+        alert("Please select your gender");
+        return false;
+    }
+
+    if (password.length < 6) {
+        alert("Password must contain at least 6 characters");
+        return false;
+    }
+
+    alert("Registration Successful!");
+    return true;
+}
+</script>
+
+</body>
+</html>

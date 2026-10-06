@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Account</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background: #e8f5e9;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .bank {
+            background: #ffffff;
+            width: 420px;
+            margin: auto;
+            padding: 30px;
+            border-left: 8px solid #2e7d32;
+            border-radius: 5px;
+            box-shadow: 0 8px 20px #aaa;
+        }
+
+        h1 {
+            color: #2e7d32;
+        }
+
+        .balance {
+            font-size: 38px;
+            color: #1565c0;
+            margin: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 6px;
+            border: 0;
+            border-radius: 20px;
+            background: #2e7d32;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1b5e20;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function Account(props) {
+
+    const [balance, setBalance] = React.useState(props.amount);
+
+    function deposit() {
+        setBalance(balance + 1000);
+    }
+
+    function withdraw() {
+        if (balance >= 1000) {
+            setBalance(balance - 1000);
+        }
+    }
+
+    function reset() {
+        setBalance(props.amount);
+    }
+
+    return (
+        <div className="bank">
+
+            <h2>Bank Account</h2>
+
+            <p><b>Account Holder:</b> {props.name}</p>
+            <p><b>Account Type:</b> {props.type}</p>
+
+            <hr />
+
+            <h3>Current Balance</h3>
+
+            <div className="balance">
+                ₹{balance}
+            </div>
+
+            <button onClick={deposit}>
+                Deposit ₹1000
+            </button>
+
+            <button onClick={withdraw}>
+                Withdraw ₹1000
+            </button>
+
+            <button onClick={reset}>
+                Reset
+            </button>
+
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <div>
+            <h1>Bank Account Management</h1>
+
+            <Account
+                name="Arun"
+                type="Savings"
+                amount={10000}
+            />
+        </div>
+    );
+}
+
+const root = ReactDOM.createRoot(
+    document.getElementById("root")
+);
+
+root.render(<App />);
+
+</script>
+
+</body>
+</html>

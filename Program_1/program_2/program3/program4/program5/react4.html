@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Display</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff7ed;
+        }
+
+        .app {
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #ea580c;
+        }
+
+        .products {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            width: 220px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .price {
+            color: #ea580c;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function Product({ name, price, category, status }) {
+
+    return (
+        <div className="card">
+
+            <h2>{name}</h2>
+
+            <p className="price">₹{price}</p>
+
+            <p>
+                <b>Category:</b> {category}
+            </p>
+
+            <p>
+                <b>Status:</b> {status}
+            </p>
+
+        </div>
+    );
+}
+
+function App() {
+
+    return (
+        <div className="app">
+
+            <h1>Product Display</h1>
+
+            <p>Product information using React Components</p>
+
+            <div className="products">
+
+                <Product
+                    name="Laptop"
+                    price="50,000"
+                    category="Electronics"
+                    status="Available"
+                />
+
+                <Product
+                    name="Mobile Phone"
+                    price="20,000"
+                    category="Electronics"
+                    status="Available"
+                />
+
+                <Product
+                    name="Headphones"
+                    price="2,000"
+                    category="Accessories"
+                    status="Out of Stock"
+                />
+
+            </div>
+
+        </div>
+    );
+}
+
+const root = ReactDOM.createRoot(
+    document.getElementById("root")
+);
+
+root.render(<App />);
+
+</script>
+
+</body>
+</html>
